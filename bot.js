@@ -43,7 +43,7 @@ client.on("message", message => {
 		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
 		if( !role1 ) return message.channel.sendMessage( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );if( message.mentions.members.first() ){
 			message.mentions.members.first().addRole( role1 );
-			return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
+			return message.channel.sendMessage('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
 		}
 		if( args[0].toLowerCase() == "all" ){
 			message.guild.members.forEach(m=>m.addRole( role1 ))
@@ -59,9 +59,10 @@ client.on("message", message => {
 });
 client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
+  const devs = ['356808288974667776', '481559079966343178']
   var args = message.content.split(' ').slice(1);
   var argresult = args.join(' ');
-  if (message.author.id !== "356808288974667776") return;
+ if(!devs.includes(message.author.id )) return message.reply('**هذه الامر فقط لاصاحب البوت :)**');
 
   
   if (message.content.startsWith(prefix + 'setwatching')) {
@@ -102,5 +103,14 @@ if (message.content.startsWith(prefix + 'setplay')) {
 
 
 
+});
+client.on('message', message => {
+    if(message.content.includes('https://')){
+                                            if(!message.channel.guild) return;
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return;
+    }
+}
 });
 client.login(process.env.BOT_TOKEN);
