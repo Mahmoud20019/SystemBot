@@ -113,4 +113,39 @@ client.on('message', message => {
     }
 }
 });
+client.on('message', message => {
+    let args = message.content.split(" ").slice(1);
+if (message.content.startsWith(prefix + 'clear')) {
+ let args = message.content.split(" ").slice(1)
+    let messagecount = parseInt(args);
+    if (args > 100) return message.reply("اعلى حد للمسح هو 100").then(messages => messages.delete(5000))
+    if (!messagecount) return message.reply("ااختر كمية المسح من 1-100").then(messages => messages.delete(5000))
+    message.channel.fetchMessages({limit: messagecount + 1}).then(messages => message.channel.bulkDelete(messages));
+    message.channel.send(`\`\`\`javascript
+${args} :  عدد الرسائل التي تم مسحها \`\`\` `).then(messages => messages.delete(5000));
+  }
+  });
+const dev = ['ايدي الحسب ' , '385792548821663746' , '356808288974667776' , ''];   
+client.on('message', message => {    
+  if (message.author.bot) return;   
+  if (!message.content.startsWith(prefix)) return;   
+    var argresult = message.content.split(` `).slice(1).join(' ');
+      if (!dev.includes(message.author.id)) return; 
+  let command = message.content.split(" ")[0]; 
+  command = command.slice(prefix.length); 
+  let args = message.content.split(" ").slice(1);   
+  if (command === "say")  {   
+  if(!message.channel.guild) return message.reply('** __This command only for servers⛔__  **');
+          message.delete()   
+    message.channel.sendMessage(args.join(" ")).catch(console.error);   
+  } 
+if (command == "embed")    { 
+  if(!message.channel.guild) return message.reply('** __This command only for servers⛔__  **'); 
+    let say = new Discord.RichEmbed() 
+    .setDescription(args.join("  ")) 
+    .setColor("RANDOM") 
+    message.channel.sendEmbed(say); 
+    message.delete(); 
+  }  
+});
 client.login(process.env.BOT_TOKEN);
