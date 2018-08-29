@@ -62,7 +62,7 @@ client.on('message', message => {
   const devs = ['356808288974667776', '481559079966343178']
   var args = message.content.split(' ').slice(1);
   var argresult = args.join(' ');
- if(!devs.includes(message.author.id )) return message.reply('**هذه الامر فقط لاصاحب البوت :)**');
+ if(!devs.includes(message.author.id )) return;
 
   
   if (message.content.startsWith(prefix + 'setwatching')) {
