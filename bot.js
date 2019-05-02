@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = "#"
-//© 2018 PicAssO#2030 <@300306052610523136>
+//© 2018 Ops! <@300306052610523136>
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -148,4 +148,4 @@ if (command == "embed")    {
     message.delete(); 
   }  
 });
-client.login(process.env.BOT_TOKEN);
+client.login(NTczNDg2MzY5OTIyNjEzMjQ4.XMri3g.bHomqGx-LtEhWrVHSDBzbIX_VVo);
